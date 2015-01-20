@@ -16,6 +16,7 @@ public class SwordfightingSkill extends Skill
 	public SwordfightingSkill()
 	{
 		this.setName("Swordfighting");
+		
 		this.setDescription("Makes you better at fighting with swords.");
 		
 		this.addEarnExpDesc("Fight players or mobs!");

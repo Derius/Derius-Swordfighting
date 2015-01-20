@@ -1,6 +1,8 @@
 package dk.muj.derius.swordfighting;
 
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+
+import com.massivecraft.massivecore.util.Txt;
 
 import dk.muj.derius.ability.Ability;
 import dk.muj.derius.ability.AbilityType;
@@ -8,22 +10,22 @@ import dk.muj.derius.entity.MPlayer;
 import dk.muj.derius.skill.Skill;
 import dk.muj.derius.swordfighting.entity.MConf;
 
-public class FastHit extends Ability
+public class SwordTraining extends Ability
 {
-	private static FastHit i = new FastHit();
-	public static FastHit get() { return i; }
+	private static SwordTraining i = new SwordTraining();
+	public static SwordTraining get() { return i; }
 	
 	// -------------------------------------------- //
 	// DESCRIPTION
 	// -------------------------------------------- //
 	
-	public FastHit()
+	public SwordTraining()
 	{
-		this.setName("Doubledrop and replace");
+		this.setName("Sword Training");
 		
-		this.setDescription("gives doubledrop and sometimes replants it");
+		this.setDescription("Your level increases your damage.");
 		
-		this.setType(AbilityType.ACTIVE);
+		this.setType(AbilityType.PASSIVE);
 	}
 	
 	// -------------------------------------------- //
@@ -33,7 +35,7 @@ public class FastHit extends Ability
 	@Override
 	public int getId()
 	{
-		return MConf.get().getFasthitId;
+		return MConf.get().getSwordTrainingId;
 	}
 	
 	@Override
@@ -43,36 +45,39 @@ public class FastHit extends Ability
 	}
 
 	// -------------------------------------------- //
-	// ABILITY ACTIVATION
+	// OVERRIDE
 	// -------------------------------------------- //
+
 	@Override
 	public Object onActivate(MPlayer p, Object other)
 	{
-		ItemStack inHand = p.getPlayer().getItemInHand();
-		// Apply lore to the sword
-		// Apply sharpness to sword
-		// apply speedeffect to player
-		return inHand;
+		if ( ! (other instanceof EntityDamageByEntityEvent)) return null;
+		EntityDamageByEntityEvent event = (EntityDamageByEntityEvent) other;
+		
+		double damage = event.getDamage();
+		int playerLevel = p.getLvl(SwordfightingSkill.get());
+		double modifier = MConf.get().getDamagePerLevels();
+		int perLevel = MConf.get().getLevelsPerDamageIncrease();
+		damage = damage + (playerLevel / perLevel * modifier);
+		
+		event.setDamage(damage);
+		return null;
 	}
 
 	@Override
 	public void onDeactivate(MPlayer p, Object other)
 	{
-		// remove lore
-		// remove sharpness from sword
-		// remove potioneffect from player
-		// apply damage to sword
-		// send a message that it cuts the player if the sword breaks
+		// Nothing to do here
 	}
-	
+
 	// -------------------------------------------- //
 	// Level description
 	// -------------------------------------------- //
 	
+	// TODO: Change to bonusdamage
 	@Override
 	public String getLvlDescription(int lvl)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return Txt.parse("Your bonus damage for sowrds is %s.", 5);
 	}
 }

@@ -27,6 +27,7 @@ public class DeriusSwordfighting extends MassivePlugin
 			
 		SwordfightingSkill.get().register();
 		FastHit.get().register();
+		SwordTraining.get().register();
 		
 		super.postEnable();
 	}

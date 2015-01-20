@@ -28,12 +28,25 @@ public class MConf extends Entity<MConf>
 	/**
 	 * The Id of the passive Ability. Each ability has it's own Id
 	 */
-	// public int getNoviceId = 51; // currently none
+	public int getSwordTrainingId = 51;
 	
 	/**
 	 * The Id of the fast hit Ability. Each ability has it's own Id
 	 */
 	public int getFasthitId = 52;
+
+	private double pvpExpModifier = 1.5;
+	public double getPvpExpModifier() { return pvpExpModifier; }
+	
+	private double damagePerLevels = 0.5;
+	public double getDamagePerLevels() { return damagePerLevels; }
+	
+	private int levelsPerDamageIncrease = 100;
+	public int getLevelsPerDamageIncrease() { return levelsPerDamageIncrease; }
+
+
+
+
 	
 	// -------------------------------------------- //
 	// ABILITY REQUIREMENTS
