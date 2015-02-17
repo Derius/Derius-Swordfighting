@@ -23,17 +23,17 @@ public class MConf extends Entity<MConf>
 	/**
 	 * The Id of the skill, there is only one of these in each skill.
 	 */
-	public int getSkillId = 50;
+	public String getSkillId = "Derius_Swordfighting";
 	
 	/**
 	 * The Id of the passive Ability. Each ability has it's own Id
 	 */
-	public int getSwordTrainingId = 51;
+	public String getSwordTrainingId = "Derius_Swordfighting_Training";
 	
 	/**
 	 * The Id of the fast hit Ability. Each ability has it's own Id
 	 */
-	public int getFasthitId = 52;
+	public String getSwiftHitId = "Derius_Swordfighting_SwiftHit";
 
 	private double pvpExpModifier = 1.5;
 	public double getPvpExpModifier() { return pvpExpModifier; }
