@@ -79,7 +79,7 @@ public class Training extends DeriusAbility implements Ability
 	
 	private double getBonusDamage(int level)
 	{
-		return (level / SwordfightingSkill.getLevelsPerDamageIncrease()) * SwordfightingSkill.getAmountPerIncrease();
+		return (level / SwordfightingSkill.getLevelsPerDamageStep()) * SwordfightingSkill.getAmountPerStep();
 	}
 
 }
