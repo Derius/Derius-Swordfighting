@@ -163,6 +163,7 @@ public class SwiftHit extends DeriusAbility implements Ability
 		else if ( ! hasChestWear) type = PotionEffectType.POISON;
 		else if ( ! hasLegWear) type = PotionEffectType.CONFUSION;
 		else if ( ! hasFootWear) type = PotionEffectType.SLOW;
+		else type = PotionEffectType.WEAKNESS;
 		
 		// Build PotionEffect
 		int duration = getCrippleDuration(level);
