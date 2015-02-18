@@ -9,7 +9,6 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import com.massivecraft.massivecore.util.MUtil;
 
 import dk.muj.derius.api.DPlayer;
-import dk.muj.derius.swordfighting.entity.MConf;
 import dk.muj.derius.util.AbilityUtil;
 import dk.muj.derius.util.Listener;
 
@@ -42,11 +41,11 @@ public class SwordfightingListener implements Listener
 			AbilityUtil.activateAbility(attacker, SwiftHit.get(), event, false);
 		}
 		
-		AbilityUtil.activateAbility(attacker, SwordTraining.get(), event, false);
+		AbilityUtil.activateAbility(attacker, Training.get(), event, false);
 		
 		// Give Exp
 		double damage = event.getDamage();
-		long exp = (long) (pve ? damage : damage * MConf.get().getPvpExpModifier());
+		long exp = (long) (pve ? damage : damage * SwordfightingSkill.getPvpExpModifier());
 		
 		attacker.addExp(SwordfightingSkill.get(), exp);
 		

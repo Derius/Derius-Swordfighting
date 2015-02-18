@@ -2,8 +2,6 @@ package dk.muj.derius.swordfighting;
 
 import com.massivecraft.massivecore.MassivePlugin;
 
-import dk.muj.derius.swordfighting.entity.MConfColl;
-
 public class DeriusSwordfighting extends MassivePlugin
 {
 	// -------------------------------------------- //
@@ -21,13 +19,11 @@ public class DeriusSwordfighting extends MassivePlugin
 	@Override
 	public void onEnable()
 	{
-		super.preEnable();
-	
-		MConfColl.get().init();
+		if ( ! super.preEnable()) return;
 			
 		SwordfightingSkill.get().register();
 		SwiftHit.get().register();
-		SwordTraining.get().register();
+		Training.get().register();
 		
 		super.postEnable();
 	}

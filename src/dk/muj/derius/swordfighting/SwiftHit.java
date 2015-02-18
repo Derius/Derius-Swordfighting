@@ -4,13 +4,10 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
-import com.massivecraft.massivecore.collections.WorldExceptionSet;
-
 import dk.muj.derius.api.Ability;
 import dk.muj.derius.api.DPlayer;
 import dk.muj.derius.api.Skill;
 import dk.muj.derius.entity.ability.DeriusAbility;
-import dk.muj.derius.swordfighting.entity.MConf;
 
 public class SwiftHit extends DeriusAbility implements Ability
 {
@@ -37,7 +34,7 @@ public class SwiftHit extends DeriusAbility implements Ability
 	@Override
 	public String getId()
 	{
-		return MConf.get().getSwiftHitId;
+		return "derius:swordfighting:swifthit";
 	}
 	
 	@Override
@@ -89,10 +86,4 @@ public class SwiftHit extends DeriusAbility implements Ability
 		return null;
 	}
 
-	@Override
-	public void setWorldsEarn(WorldExceptionSet worldsUse)
-	{
-		// TODO Auto-generated method stub
-		
-	}
 }

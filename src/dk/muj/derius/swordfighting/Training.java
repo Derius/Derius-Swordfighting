@@ -2,25 +2,23 @@ package dk.muj.derius.swordfighting;
 
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
-import com.massivecraft.massivecore.collections.WorldExceptionSet;
 import com.massivecraft.massivecore.util.Txt;
 
 import dk.muj.derius.api.Ability;
 import dk.muj.derius.api.DPlayer;
 import dk.muj.derius.api.Skill;
 import dk.muj.derius.entity.ability.DeriusAbility;
-import dk.muj.derius.swordfighting.entity.MConf;
 
-public class SwordTraining extends DeriusAbility implements Ability
+public class Training extends DeriusAbility implements Ability
 {
-	private static SwordTraining i = new SwordTraining();
-	public static SwordTraining get() { return i; }
+	private static Training i = new Training();
+	public static Training get() { return i; }
 	
 	// -------------------------------------------- //
 	// DESCRIPTION
 	// -------------------------------------------- //
 	
-	public SwordTraining()
+	public Training()
 	{
 		this.setName("Sword Training");
 		
@@ -36,7 +34,7 @@ public class SwordTraining extends DeriusAbility implements Ability
 	@Override
 	public String getId()
 	{
-		return MConf.get().getSwordTrainingId;
+		return "derius:swordfighting:training";
 	}
 	
 	@Override
@@ -56,10 +54,8 @@ public class SwordTraining extends DeriusAbility implements Ability
 		EntityDamageByEntityEvent event = (EntityDamageByEntityEvent) other;
 		
 		double damage = event.getDamage();
-		int playerLevel = dplayer.getLvl(SwordfightingSkill.get());
-		double modifier = MConf.get().getDamagePerLevels();
-		int perLevel = MConf.get().getLevelsPerDamageIncrease();
-		damage = damage + (playerLevel / perLevel) * modifier;
+		
+		damage += getBonusDamage(dplayer.getLvl(getSkill()));
 		
 		event.setDamage(damage);
 		return null;
@@ -78,16 +74,12 @@ public class SwordTraining extends DeriusAbility implements Ability
 	@Override
 	public String getLvlDescriptionMsg(int lvl)
 	{
-		double modifier = MConf.get().getDamagePerLevels();
-		int perLevel = MConf.get().getLevelsPerDamageIncrease();
-		double bonusDamage = (lvl / perLevel) * modifier;
-		return Txt.parse("Your bonus damage for swords is %s.", bonusDamage);
+		return Txt.parse("Your bonus damage for swords is %s.", getBonusDamage(lvl));
+	}
+	
+	private double getBonusDamage(int level)
+	{
+		return (level / SwordfightingSkill.getLevelsPerDamageIncrease()) * SwordfightingSkill.getAmountPerIncrease();
 	}
 
-	@Override
-	public void setWorldsEarn(WorldExceptionSet worldsUse)
-	{
-		// TODO Auto-generated method stub
-		
-	}
 }
