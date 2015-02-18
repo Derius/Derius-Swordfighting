@@ -2,11 +2,8 @@ package dk.muj.derius.swordfighting;
 
 import org.bukkit.Material;
 
-import com.massivecraft.massivecore.util.MUtil;
-
 import dk.muj.derius.api.Skill;
 import dk.muj.derius.entity.skill.DeriusSkill;
-import dk.muj.derius.util.Listener;
 
 public class SwordfightingSkill extends DeriusSkill implements Skill
 {
@@ -28,10 +25,7 @@ public class SwordfightingSkill extends DeriusSkill implements Skill
 		
 		this.setIcon(Material.IRON_SWORD);
 		
-		// Listener
-		Listener.registerPlayerAttackKeys(SwordfightingListener.get(), MUtil.SWORD_MATERIALS);
-		Listener.registerTools(MUtil.SWORD_MATERIALS);
-		
+		// Config
 		this.writeConfig("pvpExpModifier", 1.5);
 		this.writeConfig("damagePerLevels", 0.5);
 		this.writeConfig("levelsPerDamageIncrease", 100);
@@ -44,6 +38,10 @@ public class SwordfightingSkill extends DeriusSkill implements Skill
 		return "derius:swordfighting";
 		
 	}
+	
+	// -------------------------------------------- //
+	// CONFIG GETTERS
+	// -------------------------------------------- //
 	
 	public static double getPvpExpModifier()
 	{

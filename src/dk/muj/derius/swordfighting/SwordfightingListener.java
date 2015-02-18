@@ -2,7 +2,6 @@ package dk.muj.derius.swordfighting;
 
 import java.util.Optional;
 
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
@@ -21,6 +20,13 @@ public class SwordfightingListener implements Listener
 	private static SwordfightingListener i = new SwordfightingListener();
 	public static SwordfightingListener get() { return i; }
 	
+	private SwordfightingListener()
+	{
+		i = this;
+		Listener.registerPlayerAttackKeys(SwordfightingListener.get(), MUtil.SWORD_MATERIALS);
+		Listener.registerTools(MUtil.SWORD_MATERIALS);
+	}
+	
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
@@ -28,13 +34,10 @@ public class SwordfightingListener implements Listener
 	@Override
 	public void onPlayerAttack(DPlayer attacker, EntityDamageByEntityEvent event)
 	{	
-		// Is Opponent Player?
-		boolean pve = true;
-		Entity opponent = event.getEntity();
-		if (opponent instanceof  Player)
-		{
-			pve = false;
-		}
+		if ( ! attacker.isPlayer()) return;
+		
+		// Are we handling pvp?
+		boolean pve = event.getEntity() instanceof  Player ? true : false;
 		
 		if ( ! attacker.getPreparedTool().equals(Optional.empty()) && MUtil.SWORD_MATERIALS.contains(attacker.getPreparedTool().get()))
 		{
@@ -51,6 +54,5 @@ public class SwordfightingListener implements Listener
 		
 		return;
 	}
-	
 	
 }

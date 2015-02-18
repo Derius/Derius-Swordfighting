@@ -54,7 +54,7 @@ public class SwiftHit extends DeriusAbility implements Ability
 		EntityDamageByEntityEvent event = (EntityDamageByEntityEvent) other;
 		
 		Entity entity = event.getEntity();
-		if ( !(entity instanceof LivingEntity)) return null;
+		if ( ! (entity instanceof LivingEntity)) return null;
 		LivingEntity opponent = (LivingEntity) entity;
 		
 		opponent.getActivePotionEffects();
@@ -82,8 +82,8 @@ public class SwiftHit extends DeriusAbility implements Ability
 	@Override
 	public String getLvlDescriptionMsg(int lvl)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		// Make this a real message when ability is designed.
+		return "";
 	}
 
 }

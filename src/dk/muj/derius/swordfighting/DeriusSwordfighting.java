@@ -25,6 +25,8 @@ public class DeriusSwordfighting extends MassivePlugin
 		SwiftHit.get().register();
 		Training.get().register();
 		
+		SwordfightingListener.get();
+		
 		super.postEnable();
 	}
 }
