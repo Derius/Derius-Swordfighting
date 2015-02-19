@@ -35,14 +35,14 @@ public class SwordfightingSkill extends DeriusSkill implements Skill
 		this.writeConfig("speedSecondsPerStep", 0.25);
 		this.writeConfig("speedLevelPerStep", 0.25);
 		this.writeConfig("levelsPerSpeedStep", 50);
-		this.writeConfig("maxSpeedLevel", 7);
+		this.writeConfig("maxSpeedLevel", 5);
 		
 		this.writeConfig("isCripplingdebuffEnabled", true);
 		this.writeConfig("baseCripplingTicks", 100);
 		this.writeConfig("cripplingSecondsPerStep", 0.25);
 		this.writeConfig("cripplingLevelPerStep", 0.1);
 		this.writeConfig("levelsPerCripplingStep", 50);
-		this.writeConfig("maxCripplingLevel", 7);
+		this.writeConfig("maxCripplingLevel", 5);
 		
 	}
 	

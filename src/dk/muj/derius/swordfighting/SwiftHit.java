@@ -1,7 +1,6 @@
 package dk.muj.derius.swordfighting;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
@@ -38,7 +37,7 @@ public class SwiftHit extends DeriusAbility implements Ability
 		
 		this.setType(AbilityType.ACTIVE);
 		
-		this.setTicksCooldown(20*60*5);
+		this.setTicksCooldown(20*60*5); //makes it 5 minutes
 	}
 	
 	List<String> lore = MUtil.list(
@@ -70,7 +69,7 @@ public class SwiftHit extends DeriusAbility implements Ability
 	public Object onActivate(DPlayer dplayer, Object other)
 	{
 		// NULL check
-		if ( ! dplayer.isPlayer()) return Optional.empty();
+		if ( ! dplayer.isPlayer()) return null;
 		if ( ! (other instanceof EntityDamageByEntityEvent)) return null;
 		EntityDamageByEntityEvent event = (EntityDamageByEntityEvent) other;
 		
@@ -79,6 +78,7 @@ public class SwiftHit extends DeriusAbility implements Ability
 		LivingEntity opponent = (LivingEntity) entity;
 		
 		ItemStack inHand = dplayer.getPlayer().getItemInHand();
+		if ( ! MUtil.isSword(inHand)) return null;
 		
 		// Add lore
 		ItemUtil.addLore(inHand, lore);
@@ -116,8 +116,10 @@ public class SwiftHit extends DeriusAbility implements Ability
 	@Override
 	public String getLvlDescriptionMsg(int lvl)
 	{
-		// Make this a real message when ability is designed.
-		return Txt.parse("<i>Adds %s seconds of Speed to you and %s seconds of a crippling effect to the opponent.", speedDurationInSeconds(lvl), crippleDurationInSeconds(lvl));
+		return Txt.parse("<i>Adds <lime>%s <i>seconds of <g>Speed to you and <lime>%s <i>seconds of <b>a crippling effect <i>to the opponent.",
+				speedDurationInSeconds(lvl),
+				crippleDurationInSeconds(lvl)
+				);
 	}
 	
 	// -------------------------------------------- //
@@ -194,7 +196,7 @@ public class SwiftHit extends DeriusAbility implements Ability
 	
 	private double speedDurationInSeconds(int level)
 	{
-		return getSpeedDuration(level) / 20;
+		return getSpeedDuration(level) / 20.0;
 	}
 	
 	private int getSpeedLevel(int level)

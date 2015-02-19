@@ -35,6 +35,7 @@ public class SwordfightingListener implements Listener
 	public void onPlayerAttack(DPlayer attacker, EntityDamageByEntityEvent event)
 	{	
 		if ( ! attacker.isPlayer()) return;
+		if (event.isCancelled()) return;
 		
 		// Are we handling pvp?
 		boolean pve = event.getEntity() instanceof  Player ? true : false;

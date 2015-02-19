@@ -50,6 +50,7 @@ public class Training extends DeriusAbility implements Ability
 	@Override
 	public Object onActivate(DPlayer dplayer, Object other)
 	{
+		if ( ! dplayer.isPlayer()) return null;
 		if ( ! (other instanceof EntityDamageByEntityEvent)) return null;
 		EntityDamageByEntityEvent event = (EntityDamageByEntityEvent) other;
 		
@@ -74,7 +75,7 @@ public class Training extends DeriusAbility implements Ability
 	@Override
 	public String getLvlDescriptionMsg(int lvl)
 	{
-		return Txt.parse("Your bonus damage for swords is %s.", getBonusDamage(lvl));
+		return Txt.parse("<i>Your bonus damage for swords is %s.", getBonusDamage(lvl));
 	}
 	
 	private double getBonusDamage(int level)
