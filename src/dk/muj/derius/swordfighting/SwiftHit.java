@@ -19,6 +19,7 @@ import dk.muj.derius.api.DPlayer;
 import dk.muj.derius.api.Skill;
 import dk.muj.derius.entity.ability.DeriusAbility;
 import dk.muj.derius.lib.ItemUtil;
+import dk.muj.derius.req.ReqHasEnoughStamina;
 
 public class SwiftHit extends DeriusAbility implements Ability
 {
@@ -31,13 +32,17 @@ public class SwiftHit extends DeriusAbility implements Ability
 	
 	public SwiftHit()
 	{
+		// Ability description
 		this.setName("Swift Hit");
-		
 		this.setDesc("A swift hit that makes the opponent weaker.");
-		
 		this.setType(AbilityType.ACTIVE);
 		
-		this.setTicksCooldown(20*60*5); //makes it 5 minutes
+		// Exhaustion
+		this.setStaminaUsage(SwordfightingSkill.getSwiftHitStaminaUsage());
+		this.setTicksCooldown(10); //makes it 5 minutes
+		
+		// Requirements
+		this.addActivateRequirements(ReqHasEnoughStamina.get());
 	}
 	
 	List<String> lore = MUtil.list(
@@ -135,7 +140,7 @@ public class SwiftHit extends DeriusAbility implements Ability
 		int potionLevel = getSpeedLevel(level);
 		
 		// Is the level still in range?
-		potionLevel = potionLevel >= maxLevel ? maxLevel : potionLevel;
+		potionLevel = Math.min(potionLevel, maxLevel);
 		
 		// Apply effect
 		new PotionEffect(PotionEffectType.SPEED, duration, potionLevel).apply(dplayer.getPlayer());
@@ -173,7 +178,7 @@ public class SwiftHit extends DeriusAbility implements Ability
 		int potionLevel = getCrippleLevel(level);
 		
 		// Is the level still in range?
-		potionLevel = potionLevel >= maxLevel ? maxLevel : potionLevel;
+		potionLevel = Math.min(potionLevel, maxLevel);
 
 		// Apply effect
 		new PotionEffect(type, duration, potionLevel).apply(opponent);

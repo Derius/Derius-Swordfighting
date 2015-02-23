@@ -29,6 +29,7 @@ public class SwordfightingSkill extends DeriusSkill implements Skill
 		this.writeConfig("pvpExpModifier", 1.5);
 		this.writeConfig("damagePerStep", 0.5);
 		this.writeConfig("levelsPerDamageStep", 100);
+		this.writeConfig("swiftHitStaminaUsage", 25.0);
 		
 		this.writeConfig("isSpeedbuffEnabled", true);
 		this.writeConfig("baseSpeedTicks", 100);
@@ -59,79 +60,84 @@ public class SwordfightingSkill extends DeriusSkill implements Skill
 	
 	public static double getPvpExpModifier()
 	{
-		return get().readConfig("pvpExpModifier", double.class);
+		return get().readConfig("pvpExpModifier", Double.class);
 	}
 	
 	public static double getAmountPerStep()
 	{
-		return get().readConfig("damagePerStep", double.class);
+		return get().readConfig("damagePerStep", Double.class);
 	}
 	
 	public static int getLevelsPerDamageStep()
 	{
-		return get().readConfig("levelsPerDamageStep", int.class);
+		return get().readConfig("levelsPerDamageStep", Integer.class);
+	}
+	
+	public static double getSwiftHitStaminaUsage()
+	{
+		return get().readConfig("swiftHitStaminaUsage", Double.class);
 	}
 	
 	// Swiftness
 	public static boolean isSpeedbuffEnabled()
 	{
-		return get().readConfig("isSpeedbuffEnabled", boolean.class);
+		return get().readConfig("isSpeedbuffEnabled", Boolean.class);
 	}
 	
 	public static int getBaseSpeedDuration()
 	{
-		return get().readConfig("baseSpeedTicks", int.class);
+		return get().readConfig("baseSpeedTicks", Integer.class);
 	}
 	
 	public static double getSpeedSecondsPerStep()
 	{
-		return get().readConfig("speedSecondsPerStep", double.class);
+		return get().readConfig("speedSecondsPerStep", Double.class);
 	}
 	
 	public static double getSpeedLevelPerStep()
 	{
-		return get().readConfig("speedLevelPerStep", double.class);
+		return get().readConfig("speedLevelPerStep", Double.class);
 	}
 	
 	public static int getLevelsPerSpeedStep()
 	{
-		return get().readConfig("levelsPerSpeedStep", int.class);
+		return get().readConfig("levelsPerSpeedStep", Integer.class);
 	}
 	
 	public static int getMaxSpeedLevel()
 	{
-		return get().readConfig("maxSpeedLevel", int.class);
+		return get().readConfig("maxSpeedLevel", Integer.class);
 	}
 	
 	// Crippling
 	public static boolean isCripplingdebuffEnabled()
 	{
-		return get().readConfig("isCripplingdebuffEnabled", boolean.class);
+		return get().readConfig("isCripplingdebuffEnabled", Boolean.class);
 	}
 	
 	public static int getBaseCripplingDuration()
 	{
-		return get().readConfig("baseCripplingTicks", int.class);
+		return get().readConfig("baseCripplingTicks", Integer.class);
 	}
 	
 	public static double getCripplingSecondsPerStep()
 	{
-		return get().readConfig("cripplingSecondsPerStep", double.class);
+		return get().readConfig("cripplingSecondsPerStep", Double.class);
 	}
 	
 	public static double getCripplingLevelPerStep()
 	{
-		return get().readConfig("cripplingLevelPerStep", double.class);
+		return get().readConfig("cripplingLevelPerStep", Double.class);
 	}
 	
 	public static int getLevelsPerCripplingStep()
 	{
-		return get().readConfig("levelsPerCripplingStep", int.class);
+		return get().readConfig("levelsPerCripplingStep", Integer.class);
 	}
 	
 	public static int getMaxCripplingLevel()
 	{
-		return get().readConfig("maxCripplingLevel", int.class);
+		return get().readConfig("maxCripplingLevel", Integer.class);
 	}
 
 }
