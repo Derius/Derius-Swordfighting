@@ -38,7 +38,7 @@ public class SwiftHit extends DeriusAbility implements Ability
 		this.setType(AbilityType.ACTIVE);
 		
 		// Exhaustion
-		this.setStaminaUsage(SwordfightingSkill.getSwiftHitStaminaUsage());
+		this.setStaminaUsage(25.0);
 		this.setTicksCooldown(10); //makes it 5 minutes
 		
 		// Requirements

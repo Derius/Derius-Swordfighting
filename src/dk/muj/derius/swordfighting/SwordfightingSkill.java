@@ -29,7 +29,6 @@ public class SwordfightingSkill extends DeriusSkill implements Skill
 		this.writeConfig("pvpExpModifier", 1.5);
 		this.writeConfig("damagePerStep", 0.5);
 		this.writeConfig("levelsPerDamageStep", 100);
-		this.writeConfig("swiftHitStaminaUsage", 25.0);
 		
 		this.writeConfig("isSpeedbuffEnabled", true);
 		this.writeConfig("baseSpeedTicks", 100);
@@ -71,11 +70,6 @@ public class SwordfightingSkill extends DeriusSkill implements Skill
 	public static int getLevelsPerDamageStep()
 	{
 		return get().readConfig("levelsPerDamageStep", Integer.class);
-	}
-	
-	public static double getSwiftHitStaminaUsage()
-	{
-		return get().readConfig("swiftHitStaminaUsage", Double.class);
 	}
 	
 	// Swiftness
